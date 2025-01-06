@@ -1,0 +1,41 @@
+1. Include required libraries for ESP-NOW and WiFi functionality.
+
+2. Define pins for motor control:
+    - Right motors:
+        - Pin 1 for forward
+        - Pin 2 for backward
+    - Left motors:
+        - Pin 1 for forward
+        - Pin 2 for backward
+
+3. Define a structure to store received data:
+    - Variables `x` and `y` for acceleration measurements along the X and Y axes. (Same as in the Controller)
+
+4. Create a variable to store received data.
+
+5. Define a callback function to handle incoming data:
+    - Copy incoming data into the variable.
+
+6. Setup function:
+    - Configure motor control pins as output.
+    - Initialize WiFi in station mode.
+    - Initialize ESP-NOW communication.
+    - Register the callback function for received data.
+
+7. Define motor control functions:
+    - For right motors:
+        - Forward: Set forward pin HIGH, backward pin LOW.
+        - Backward: Set forward pin LOW, backward pin HIGH.
+        - Stop: Set both pins LOW.
+    - For left motors:
+        - Forward: Set forward pin HIGH, backward pin LOW.
+        - Backward: Set forward pin LOW, backward pin HIGH.
+        - Stop: Set both pins LOW.
+
+8. Main loop:
+    - Check received data (`x` and `y` values) to control car movement:
+        - If `x > 4`: Move forward (both motors forward).
+        - Else if `x < -4`: Move backward (both motors backward).
+        - Else if `y > 4`: Turn right (right motors backward, left motors forward).
+        - Else if `y < -4`: Turn left (right motors forward, left motors backward).
+        - Else: Stop all motors.

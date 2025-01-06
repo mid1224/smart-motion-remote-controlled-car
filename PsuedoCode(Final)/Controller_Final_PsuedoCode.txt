@@ -1,0 +1,26 @@
+1. Include required libraries.
+
+2. Define the receiver's ESP32 address.
+
+3. Create an ADXL345 object to communicate with the accelerometer.
+
+4. Define a structure for the data to send:
+    - Variables `x` and `y` for acceleration measurements along the X and Y axes.
+
+5. Create a global variable to hold the data to send.
+
+6. Define a variable to store receiver information:
+    - Use `esp_now_peer_info_t` to hold the receiver's address and communication details.
+
+7. Setup function:
+    - Initialize the ADXL345 accelerometer.
+    - Initialize Wi-Fi in station mode for ESP-NOW communication.
+    - Initialize ESP-NOW communication.
+    - Copy the receiver's address into the receiver information structure.
+    - Establish a connection with the receiver using ESP-NOW.
+
+8. Loop function:
+    - Create a variable to store sensor data (`event`).
+    - Retrieve acceleration data from the ADXL345 and store it in `event`.
+    - Assign the X-axis and Y-axis acceleration data to the sending message structure.
+    - Send the prepared data to the receiver using ESP-NOW.
